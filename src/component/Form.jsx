@@ -34,7 +34,6 @@ function Form() {
 		},
 	});
 	const onSubmit = async (data) => {
-		await setInputs(data);
 		await postUser.mutate({ ...data });
 		console.log(data);
 		nav("/");

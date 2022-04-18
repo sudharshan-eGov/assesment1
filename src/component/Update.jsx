@@ -5,7 +5,6 @@ import { Controller, useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
-// import "./Form.css";
 const schema = yup
 	.object({
 		username: yup.string().required(),
