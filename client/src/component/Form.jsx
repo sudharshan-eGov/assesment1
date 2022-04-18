@@ -12,7 +12,7 @@ const schema = yup
 		email: yup.string().email().required(),
 		department: yup.string().required(),
 		phoneNumber: yup.number().required(),
-		gender: yup.required(),
+		gender: yup.string().required(),
 	})
 	.required();
 function Form() {
