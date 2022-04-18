@@ -8,13 +8,23 @@ function Details() {
 
 	return (
 		<div>
-			<nav>
-				<button
-					style={{ width: "14rem", fontSize: "small", float: "right" }}
-					onClick={() => nav("/create")}
-				>
-					Create Employee
-				</button>
+			<nav className="bg-gray-800">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="flex items-center justify-end h-16">
+						<div className="flex items-end">
+							<div className="hidden md:block">
+								<div className="ml-10 flex items-baseline space-x-4">
+									<a
+										href="/create"
+										className=" bg-gray-400 hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
+									>
+										Create Employee
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</nav>
 		</div>
 	);

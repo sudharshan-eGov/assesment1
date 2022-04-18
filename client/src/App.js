@@ -4,7 +4,7 @@ import Details from "./component/Details";
 import Form from "./component/Form.jsx";
 function App() {
 	return (
-		<div className="App">
+		<div class="bg-slate-500 ... ">
 			<Routes>
 				<Route path="/" element={<Details />} />
 				<Route path="/create" element={<Form />} />
