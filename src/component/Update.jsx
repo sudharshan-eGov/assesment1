@@ -1,8 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
+import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useMutation, useQueryClient } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
 // import "./Form.css";
 const schema = yup
@@ -14,31 +15,46 @@ const schema = yup
 		phonenumber: yup.string().required(),
 	})
 	.required();
-function Form() {
-	const queryClient = useQueryClient();
+function Update() {
+	const { id } = useParams();
 	const nav = useNavigate();
+	const queryClient = useQueryClient();
 	const {
 		control,
 		handleSubmit,
+		setValue,
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(schema),
 	});
-	const creteUser = (users) => {
-		const postApi = "http://localhost:8080/employees";
-		return axios.post(postApi, users);
+	const getEmployee = (id) => axios.get(`http://localhost:8080/employee/${id}`);
+	const { data, error, isLoading } = useQuery("employee", () =>
+		getEmployee(id)
+	);
+	const updateUser = (employee) => {
+		const postApi = `http://localhost:8080/employee/${employee.id}`;
+		return axios.put(postApi, employee);
 	};
-	const postUser = useMutation(creteUser, {
+	const updateEmployee = useMutation(updateUser, {
 		onSuccess: () => {
 			queryClient.invalidateQueries("employees");
 		},
 	});
+	useEffect(() => {
+		if (data?.data) {
+			setValue("username", data?.data?.username);
+			setValue("email", data?.data?.email);
+			setValue("department", data?.data?.department);
+			setValue("phonenumber", data?.data?.phonenumber);
+			setValue("age", data?.data?.age);
+		}
+	}, [data?.data]);
 	const onSubmit = async (data) => {
-		await setInputs(data);
-		await postUser.mutate({ ...data });
-		console.log(data);
+		await updateEmployee.mutate({ id, ...data });
 		nav("/");
 	};
+	if (isLoading) <h1>Loading...</h1>;
+	if (error) <h1>Error!</h1>;
 	return (
 		<div className="w-full max-w-6xl flex justify-center items-center mt-20">
 			<form
@@ -139,4 +155,4 @@ function Form() {
 	);
 }
 
-export default Form;
+export default Update;

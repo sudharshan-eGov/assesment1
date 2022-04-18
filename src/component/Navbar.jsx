@@ -1,9 +1,6 @@
 import { useNavigate } from "react-router-dom";
-function Details() {
-	// const url = "https://sudharshan";
-	// const getEmployees = axios.get(url);
-
-	// const { data, status } = useQuery("employees", getEmployees);
+import Employees from "./Employees";
+function Navbar() {
 	const nav = useNavigate();
 
 	return (
@@ -16,7 +13,7 @@ function Details() {
 								<div className="ml-10 flex items-baseline space-x-4">
 									<a
 										href="/create"
-										className=" bg-gray-400 hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
+										className=" bg-blue-400 hover:bg-blue-700 text-white px-3 py-2 rounded-md text-sm font-medium"
 									>
 										Create Employee
 									</a>
@@ -26,8 +23,9 @@ function Details() {
 					</div>
 				</div>
 			</nav>
+			<Employees />
 		</div>
 	);
 }
 
-export default Details;
+export default Navbar;
