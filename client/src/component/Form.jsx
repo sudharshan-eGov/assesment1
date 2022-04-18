@@ -7,12 +7,12 @@ import * as yup from "yup";
 import "./Form.css";
 const schema = yup
 	.object({
-		firstName: yup.string().required(),
-		lastName: yup.string().required(),
+		username: yup.string().required(),
 		age: yup.number().positive().integer().required(),
 		email: yup.string().email().required(),
+		department: yup.string().required(),
 		phoneNumber: yup.number().required(),
-		// gender: yup.required(),
+		gender: yup.required(),
 	})
 	.required();
 function Form() {
@@ -40,22 +40,14 @@ function Form() {
 	return (
 		<div>
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<label>First Name</label>
+				<label>Name</label>
 				<Controller
 					render={({ field }) => <input {...field} />}
-					name="firstName"
+					name="username"
 					control={control}
 					defaultValue=""
 				/>
-				<p>{errors.firstName?.message}</p>
-				<label>Last Name</label>
-				<Controller
-					render={({ field }) => <input {...field} />}
-					name="lastName"
-					control={control}
-					defaultValue=""
-				/>{" "}
-				<p>{errors.lastName?.message}</p>
+				<p>{errors.username?.message}</p>
 				<label>Email</label>
 				<Controller
 					render={({ field }) => <input {...field} />}
@@ -64,6 +56,14 @@ function Form() {
 					defaultValue=""
 				/>{" "}
 				<p>{errors.email?.message}</p>
+				<label>Department</label>
+				<Controller
+					render={({ field }) => <input {...field} />}
+					name="department"
+					control={control}
+					defaultValue=""
+				/>{" "}
+				<p>{errors.department?.message}</p>
 				<label>Age</label>
 				<Controller
 					render={({ field }) => <input {...field} />}
