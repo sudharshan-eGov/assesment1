@@ -4,7 +4,7 @@ import { useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import * as yup from "yup";
-import "./Form.css";
+// import "./Form.css";
 const schema = yup
 	.object({
 		username: yup.string().required(),
