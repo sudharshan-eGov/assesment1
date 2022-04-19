@@ -21,6 +21,9 @@ function Update() {
 		onSuccess: () => {
 			queryClient.invalidateQueries("allemployees");
 		},
+		onSettled: () => {
+			queryClient.invalidateQueries("allemployees");
+		},
 	});
 
 	const onSubmit = async (data) => {

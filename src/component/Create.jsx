@@ -15,6 +15,9 @@ function Create() {
 		onSuccess: () => {
 			queryClient.invalidateQueries("allemployees");
 		},
+		onSettled: () => {
+			queryClient.invalidateQueries("allemployees");
+		},
 	});
 	const onSubmit = async (data) => {
 		await postUser.mutate({ ...data });
