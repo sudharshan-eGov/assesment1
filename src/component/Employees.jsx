@@ -6,19 +6,24 @@ export default function Employees() {
 	const nav = useNavigate();
 	const url = "http://localhost:8080/employees";
 	const employees = axios.get(url);
+	const { data, isLoading, error } = useQuery("allemployees", () => employees);
+
 	const urlDelete = (id) =>
 		axios.delete(`http://localhost:8080/employee/${id}`);
-	const { data, isLoading, error } = useQuery("employees", () => employees);
-	const deleteEmployee = useMutation(urlDelete, {
+	const DeleteEmployee = useMutation(urlDelete, {
 		onSuccess: () => {
-			client.invalidateQueries("employees");
+			client.invalidateQueries("allemployees");
 		},
 	});
-	if (isLoading) return <h1>Loading...</h1>;
-	if (error) return <h1>Error...</h1>;
+
+	if (isLoading) <h1>Loading...</h1>;
+	if (error) <h1>Error...</h1>;
 	// console.log(data?.data, "data");
 	return (
 		<div>
+			<h2 className="text-blue-500 font-bold text-2xl flex justify-center underline">
+				Employees List
+			</h2>
 			<div className="flex flex-col">
 				<div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
 					<div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -30,7 +35,7 @@ export default function Employees() {
 											scope="col"
 											className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
 										>
-											#
+											Sl No.
 										</th>
 										<th
 											scope="col"
@@ -107,7 +112,7 @@ export default function Employees() {
 														</button>
 														<button
 															className="ml-4 text-xl text-red-500 cursor-pointer"
-															onClick={() => deleteEmployee.mutate(val.id)}
+															onClick={() => DeleteEmployee.mutate(val.id)}
 														>
 															Delete
 														</button>

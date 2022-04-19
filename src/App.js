@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Form from "./component/Form.jsx";
+import Create from "./component/Create";
 import Navbar from "./component/Navbar";
 import Update from "./component/Update";
 function App() {
@@ -8,7 +8,7 @@ function App() {
 		<div>
 			<Routes>
 				<Route path="/" element={<Navbar />} />
-				<Route path="/create" element={<Form />} />
+				<Route path="/create" element={<Create />} />
 				<Route path="/update/:id" element={<Update />} />
 			</Routes>
 		</div>
