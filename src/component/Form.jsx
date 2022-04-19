@@ -6,10 +6,18 @@ import * as yup from "yup";
 const schema = yup
 	.object({
 		username: yup.string().required(),
-		age: yup.number().positive().integer().required(),
+		age: yup
+			.number()
+			.positive()
+			.integer()
+			.max(60, "Age must be less than or equal to 60")
+			.required(),
 		email: yup.string().email().required(),
 		department: yup.string().required(),
-		phonenumber: yup.string().required(),
+		phonenumber: yup
+			.number()
+			.max(9999999999, "Please enter valid phonenumber")
+			.required(),
 	})
 	.required();
 function Form({ onSubmit, data }) {
