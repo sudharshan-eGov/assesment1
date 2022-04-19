@@ -8,7 +8,7 @@ function Create() {
 	const nav = useNavigate();
 	const queryClient = useQueryClient();
 	const creteUser = (users) => {
-		const postApi = "http://localhost:8080/employees";
+		const postApi = "http://localhost:8080/create_employee";
 		return axios.post(postApi, users);
 	};
 	const postUser = useMutation(creteUser, {

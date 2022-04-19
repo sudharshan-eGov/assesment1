@@ -14,7 +14,7 @@ function Update() {
 		getEmployee(id)
 	);
 	const updateUser = (employee) => {
-		const postApi = `http://localhost:8080/employee/${id}`;
+		const postApi = `http://localhost:8080/update_employee/${id}`;
 		return axios.put(postApi, employee);
 	};
 	const updateEmployee = useMutation(updateUser, {

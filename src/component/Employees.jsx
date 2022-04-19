@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
-export default function Employees() {
+export default function Employees({ search }) {
 	const client = useQueryClient();
 	const nav = useNavigate();
 
@@ -14,7 +14,7 @@ export default function Employees() {
 	);
 
 	const urlDelete = (id) =>
-		axios.delete(`http://localhost:8080/employee/${id}`);
+		axios.delete(`http://localhost:8080/delete_employee/${id}`);
 	const DeleteEmployee = useMutation(urlDelete, {
 		onSuccess: () => {
 			client.invalidateQueries("allemployees");
@@ -28,10 +28,6 @@ export default function Employees() {
 	if (error) return <h1>Error...</h1>;
 	return (
 		<div>
-			<h2 className="text-blue-500 font-bold text-2xl flex justify-center underline">
-				Employees List
-			</h2>
-
 			{isFetching ? (
 				<div>Refreshing...</div>
 			) : (
@@ -87,45 +83,65 @@ export default function Employees() {
 										</tr>
 									</thead>
 									<tbody>
-										{data?.data?.map((val, index) => (
-											<tr className="border-b" key={index}>
-												<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r-2">
-													{index + 1}
-												</td>
-												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
-													{val.username}
-												</td>
-												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
-													{val.email}
-												</td>
-												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
-													{val.department}
-												</td>
-												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
-													{val.phonenumber}
-												</td>
-												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
-													{val.age}
-												</td>
+										{data?.data
+											?.filter((val) => {
+												if (search == "") {
+													return val;
+												} else if (
+													val.username
+														.toLowerCase()
+														.includes(search.toLowerCase()) ||
+													val.phonenumber
+														.toLowerCase()
+														.includes(search.toLowerCase()) ||
+													val.age.toString().includes(search.toString()) ||
+													val.department
+														.toLowerCase()
+														.includes(search.toLowerCase())
+												) {
+													return val;
+												}
+											})
 
-												<td className="text-lg text-gray-900 font-light px-4 py-4 whitespace-nowrap border-r-2">
-													<div className="flex">
-														<button
-															className="text-sm font-bold rounded p-2 border text-white bg-gray-400 hover:bg-gray-500 cursor-pointer "
-															onClick={() => nav(`/update/${val.id}`)}
-														>
-															Edit
-														</button>
-														<button
-															className="ml-4 text-white text-sm font-bold rounded p-2 border  bg-red-500 hover:bg-red-600 cursor-pointer "
-															onClick={() => DeleteEmployee.mutate(val.id)}
-														>
-															Delete
-														</button>
-													</div>
-												</td>
-											</tr>
-										))}
+											.map((val, index) => (
+												<tr className="border-b" key={index}>
+													<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r-2">
+														{index + 1}
+													</td>
+													<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
+														{val.username}
+													</td>
+													<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
+														{val.email}
+													</td>
+													<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
+														{val.department}
+													</td>
+													<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
+														{val.phonenumber}
+													</td>
+													<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
+														{val.age}
+													</td>
+
+													<td className="text-lg text-gray-900 font-light px-4 py-4 whitespace-nowrap border-r-2">
+														<div className="flex">
+															<button
+																className="text-sm font-bold rounded p-2 border text-white bg-gray-400 hover:bg-gray-500 cursor-pointer "
+																onClick={() => nav(`/update/${val.id}`)}
+															>
+																Edit
+															</button>
+															<button
+																className="ml-4 text-white text-sm font-bold rounded p-2 border  bg-red-500 hover:bg-red-600 cursor-pointer "
+																onClick={() => DeleteEmployee.mutate(val.id)}
+															>
+																Delete
+															</button>
+														</div>
+													</td>
+												</tr>
+											))}
 									</tbody>
 								</table>
 							</div>

@@ -57,7 +57,7 @@ function Form({ onSubmit, data }) {
 						control={control}
 						defaultValue=""
 					/>
-					<p>{errors.username?.message}</p>
+					<p className="text-red-500 italic">{errors.username?.message}</p>
 					<label className="block text-gray-700 text-sm font-bold mb-2">
 						Email
 					</label>
@@ -72,7 +72,7 @@ function Form({ onSubmit, data }) {
 						control={control}
 						defaultValue=""
 					/>{" "}
-					<p>{errors.email?.message}</p>
+					<p className="text-red-500 italic">{errors.email?.message}</p>
 					<label className="block text-gray-700 text-sm font-bold mb-2">
 						Department
 					</label>
@@ -87,7 +87,7 @@ function Form({ onSubmit, data }) {
 						control={control}
 						defaultValue=""
 					/>{" "}
-					<p>{errors.department?.message}</p>
+					<p className="text-red-500 italic">{errors.department?.message}</p>
 					<label className="block text-gray-700 text-sm font-bold mb-2">
 						Phone Number
 					</label>
@@ -102,7 +102,7 @@ function Form({ onSubmit, data }) {
 						control={control}
 						defaultValue=""
 					/>{" "}
-					<p>{errors.phonenumber?.message}</p>
+					<p className="text-red-500 italic">{errors.phonenumber?.message}</p>
 					<label className="block text-gray-700 text-sm font-bold mb-2">
 						Age
 					</label>
@@ -117,7 +117,7 @@ function Form({ onSubmit, data }) {
 						control={control}
 						defaultValue=""
 					/>{" "}
-					<p>{errors.age?.message}</p>
+					<p className="text-red-500 italic">{errors.age?.message}</p>
 					<div className="mt-5 flex justify-center ">
 						<button
 							type="submit"

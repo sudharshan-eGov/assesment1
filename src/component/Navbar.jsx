@@ -1,8 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { useState, useTransition } from "react";
 import Employees from "./Employees";
 function Navbar() {
-	const nav = useNavigate();
-
+	const [input, setInput] = useState("");
+	const [isPending, startTransition] = useTransition();
+	const searchHandler = (e) => {
+		startTransition(() => {
+			setInput(e.target.value);
+		});
+		setInput(e.target.value);
+	};
 	return (
 		<div>
 			<nav className="bg-gray-800 ">
@@ -23,7 +29,18 @@ function Navbar() {
 					</div>
 				</div>
 			</nav>
-			<Employees />
+
+			<div className="pt-2 relative mx-auto text-gray-600">
+				<input
+					className="border-2 ml-5 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+					type="search"
+					name="search"
+					placeholder="Search(Name, Phone, Age...)"
+					onChange={searchHandler}
+				/>
+			</div>
+			{isPending && <p>Updating List...</p>}
+			<Employees search={input} />
 		</div>
 	);
 }
