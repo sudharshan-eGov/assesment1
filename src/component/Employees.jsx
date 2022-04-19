@@ -89,35 +89,35 @@ export default function Employees() {
 									<tbody>
 										{data?.data?.map((val, index) => (
 											<tr className="border-b" key={index}>
-												<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+												<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 border-r-2">
 													{index + 1}
 												</td>
-												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
 													{val.username}
 												</td>
-												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
 													{val.email}
 												</td>
-												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
 													{val.department}
 												</td>
-												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
 													{val.phonenumber}
 												</td>
-												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+												<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
 													{val.age}
 												</td>
 
-												<td className="text-lg text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+												<td className="text-lg text-gray-900 font-light px-4 py-4 whitespace-nowrap border-r-2">
 													<div className="flex">
 														<button
-															className="text-xl cursor-pointer"
+															className="text-sm font-bold rounded p-2 border text-white bg-gray-400 hover:bg-gray-500 cursor-pointer "
 															onClick={() => nav(`/update/${val.id}`)}
 														>
 															Edit
 														</button>
 														<button
-															className="ml-4 text-xl text-red-500 cursor-pointer"
+															className="ml-4 text-white text-sm font-bold rounded p-2 border  bg-red-500 hover:bg-red-600 cursor-pointer "
 															onClick={() => DeleteEmployee.mutate(val.id)}
 														>
 															Delete

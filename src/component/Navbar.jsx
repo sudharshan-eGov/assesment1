@@ -5,9 +5,9 @@ function Navbar() {
 
 	return (
 		<div>
-			<nav className="bg-gray-800">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="flex items-center justify-end h-16">
+			<nav className="bg-gray-800 ">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+					<div className="flex flex-wrap items-center justify-end h-16 ">
 						<div className="flex items-end">
 							<div className="hidden md:block">
 								<div className="ml-10 flex items-baseline space-x-4">
