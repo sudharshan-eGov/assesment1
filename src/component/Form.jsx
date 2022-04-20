@@ -5,7 +5,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
 const schema = yup
 	.object({
-		username: yup.string().required(),
+		username: yup
+			.string()
+			.matches(/^[A-Za-z ]*$/, "Please enter valid name")
+			.required(),
 		age: yup
 			.number()
 			.positive()
@@ -13,10 +16,14 @@ const schema = yup
 			.max(60, "Age must be less than or equal to 60")
 			.required(),
 		email: yup.string().email().required(),
-		department: yup.string().required(),
+		department: yup
+			.string()
+			.matches(/^[A-Za-z ]*$/, "Please enter valid name")
+			.required(),
 		phonenumber: yup
 			.number()
 			.max(9999999999, "Please enter valid phonenumber")
+			.matches(new RegExp("[0-9]{10}"), "Please enter valid Mobile Nmber")
 			.required(),
 	})
 	.required();
