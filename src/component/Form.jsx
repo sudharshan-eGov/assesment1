@@ -23,7 +23,6 @@ const schema = yup
 		phonenumber: yup
 			.number()
 			.max(9999999999, "Please enter valid phonenumber")
-			.matches(new RegExp("[0-9]{10}"), "Please enter valid Mobile Nmber")
 			.required(),
 	})
 	.required();
@@ -53,18 +52,19 @@ function Form({ onSubmit, data }) {
 			<h1 className="flex justify-center items-center  text-4xl font-extrabold text-blue-500">
 				{id ? "Update Employee" : "Create Employee"}
 			</h1>
-			<div className="w-full max-w-6xl flex justify-center items-center mt-15">
-				<form
-					onSubmit={handleSubmit(onSubmit)}
-					className="bg-white shadow-md rounded px-32 py-10 mb-4"
-				>
-					<label className="block text-gray-700 text-sm font-bold mb-2">
+			<div className="w-full max-w-6xl mt-5 flex justify-center items-center mt-15">
+				<form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg 	">
+					<label
+						className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+						for="grid-first-name"
+					>
 						Name
 					</label>
 					<Controller
 						render={({ field }) => (
 							<input
-								className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+								id="grid-first-name"
 								{...field}
 							/>
 						)}
@@ -72,14 +72,20 @@ function Form({ onSubmit, data }) {
 						control={control}
 						defaultValue=""
 					/>
-					<p className="text-red-500 italic">{errors.username?.message}</p>
-					<label className="block text-gray-700 text-sm font-bold mb-2">
+					<p className="text-red-500 text-xs italic">
+						{errors.username?.message}
+					</p>
+					<label
+						className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+						for="grid-first-name"
+					>
 						Email
 					</label>
 					<Controller
 						render={({ field }) => (
 							<input
-								className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+								id="grid-first-name"
 								{...field}
 							/>
 						)}
@@ -87,29 +93,17 @@ function Form({ onSubmit, data }) {
 						control={control}
 						defaultValue=""
 					/>{" "}
-					<p className="text-red-500 italic">{errors.email?.message}</p>
-					<label className="block text-gray-700 text-sm font-bold mb-2">
-						Department
-					</label>
-					<Controller
-						render={({ field }) => (
-							<input
-								className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-								{...field}
-							/>
-						)}
-						name="department"
-						control={control}
-						defaultValue=""
-					/>{" "}
-					<p className="text-red-500 italic">{errors.department?.message}</p>
-					<label className="block text-gray-700 text-sm font-bold mb-2">
+					<p className="text-red-500 text-xs italic">{errors.email?.message}</p>
+					<label
+						className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+						for="grid-first-name"
+					>
 						Phone Number
 					</label>
 					<Controller
 						render={({ field }) => (
 							<input
-								className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+								className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
 								{...field}
 							/>
 						)}
@@ -117,31 +111,64 @@ function Form({ onSubmit, data }) {
 						control={control}
 						defaultValue=""
 					/>{" "}
-					<p className="text-red-500 italic">{errors.phonenumber?.message}</p>
-					<label className="block text-gray-700 text-sm font-bold mb-2">
-						Age
-					</label>
-					<Controller
-						render={({ field }) => (
-							<input
-								className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-								{...field}
-							/>
-						)}
-						name="age"
-						control={control}
-						defaultValue=""
-					/>{" "}
-					<p className="text-red-500 italic">{errors.age?.message}</p>
+					<p className="text-red-500 text-xs italic">
+						{errors.phonenumber?.message}
+					</p>
+					<div class="flex flex-wrap -mx-3 mb-6">
+						<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+							<label
+								className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+								for="grid-first-name"
+							>
+								Department
+							</label>
+							<Controller
+								render={({ field }) => (
+									<input
+										className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+										{...field}
+									/>
+								)}
+								name="department"
+								control={control}
+								defaultValue=""
+							/>{" "}
+							<p className="text-red-500 text-xs italic">
+								{errors.department?.message}
+							</p>
+						</div>
+						<div class="w-full md:w-1/2 px-3">
+							<label
+								className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+								for="grid-first-name"
+							>
+								Age
+							</label>
+							<Controller
+								render={({ field }) => (
+									<input
+										className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+										{...field}
+									/>
+								)}
+								name="age"
+								control={control}
+								defaultValue=""
+							/>{" "}
+							<p className="text-red-500 text-xs italic">
+								{errors.age?.message}
+							</p>
+						</div>{" "}
+					</div>
 					<div className="mt-5 flex justify-center ">
 						<button
 							type="submit"
-							className="bg-blue-500 hover:bg-blue-400 text-white font-semibold hover:text-white py-2 px-4 ml-10 border  hover:border-transparent rounded"
+							className="bg-blue-500 hover:bg-blue-700 text-white font-semibold hover:text-white py-1 px-3 border  hover:border-transparent rounded"
 						>
 							SUBMIT
 						</button>
 						<button
-							className="bg-red-500 hover:bg-red-400 text-white font-semibold hover:text-white py-2 ml-5 px-4 border  hover:border-transparent rounded"
+							className="bg-red-500 hover:bg-red-700 text-white font-semibold hover:text-white py-1 ml-5 px-3 border  hover:border-transparent rounded"
 							onClick={() => nav("/")}
 						>
 							Cancel
