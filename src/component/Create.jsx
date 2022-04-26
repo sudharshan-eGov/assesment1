@@ -26,7 +26,7 @@ function Create() {
 	};
 	return (
 		<Suspense fallback={<h1>Loading..</h1>}>
-			<CreateForm onSubmit={onSubmit} />;
+			<CreateForm onSubmit={onSubmit} />
 		</Suspense>
 	);
 }

@@ -124,34 +124,26 @@ export default function Employees({ search }) {
 
 											.map((val, index) => (
 												<tr className="border-b" key={index}>
-													<td className="px-6 py-4 whitespace-nowrap text-sm font-extrabold text-gray-900 border-r-2 ">
+													<td className="px-6 whitespace-nowrap text-sm font-extrabold text-gray-900 border-r-2 ">
 														{index + 1}
 													</td>
-													<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
+													<td className="text-sm text-gray-900 font-light px-6 whitespace-nowrap border-r-2">
 														{val.username}
 													</td>
-													<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
+													<td className="text-sm text-gray-900 font-light px-6  whitespace-nowrap border-r-2">
 														{val.email}
 													</td>
-													<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
-														{val.department_id == 1
-															? "IT"
-															: val.department_id == 2
-															? "Marketing"
-															: val.department_id == 3
-															? "Sales"
-															: val.department_id == 4
-															? "HR"
-															: null}
+													<td className="text-sm text-gray-900 font-light px-6  whitespace-nowrap border-r-2">
+														{val.department.department}
 													</td>
-													<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
+													<td className="text-sm text-gray-900 font-light px-6  whitespace-nowrap border-r-2">
 														{val.phonenumber}
 													</td>
-													<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
+													<td className="text-sm text-gray-900 font-light px-6  whitespace-nowrap border-r-2">
 														{val.age}
 													</td>
 
-													<td className="text-lg text-gray-900 font-light px-4 py-4 whitespace-nowrap border-r-2">
+													<td className="text-lg text-gray-900 font-light px-4  whitespace-nowrap border-r-2">
 														<div className="flex">
 															<button
 																className="text-sm font-bold rounded p-2 border text-white bg-gray-400 hover:bg-gray-700 cursor-pointer "

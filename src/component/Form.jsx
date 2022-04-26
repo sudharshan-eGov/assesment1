@@ -5,6 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
+
 const schema = yup
 	.object({
 		username: yup
@@ -22,6 +23,7 @@ const schema = yup
 			.number()
 			.max(9999999999, "Please enter valid phonenumber")
 			.required(),
+		department_id: yup.number().required(),
 	})
 	.required();
 function Form({ onSubmit, dataemp }) {
@@ -40,7 +42,9 @@ function Form({ onSubmit, dataemp }) {
 		const getApi = "http://localhost:8080/department";
 		return axios.get(getApi);
 	};
-	const { data, isLoading, error } = useQuery("dept", getDept);
+	const { data, isLoading, error } = useQuery("dept", getDept, {
+		enabled: true,
+	});
 
 	useEffect(() => {
 		if (dataemp) {
@@ -57,14 +61,14 @@ function Form({ onSubmit, dataemp }) {
 
 	return (
 		<>
-			<h1 className="flex justify-center items-center  text-4xl font-extrabold text-blue-500">
+			<h1 className="flex justify-center items-center  text-2xl font-extrabold text-blue-900 absolute left-10 mt-10 underline">
 				{id ? "Update Employee" : "Create Employee"}
-			</h1>
-			<div className="w-full max-w-6xl mt-5 flex justify-center items-center mt-15">
+			</h1>{" "}
+			<div className="w-full max-w-6xl mt-12 py-10 flex justify-center items-center mt-15">
 				<form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg 	">
 					<label
 						className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-						for="grid-first-name"
+						htmlFor="grid-first-name"
 					>
 						Name
 					</label>
@@ -85,7 +89,7 @@ function Form({ onSubmit, dataemp }) {
 					</p>
 					<label
 						className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-						for="grid-first-name"
+						htmlFor="grid-first-name"
 					>
 						Email
 					</label>
@@ -104,7 +108,7 @@ function Form({ onSubmit, dataemp }) {
 					<p className="text-red-500 text-xs italic">{errors.email?.message}</p>
 					<label
 						className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-						for="grid-first-name"
+						htmlFor="grid-first-name"
 					>
 						Phone Number
 					</label>
@@ -126,7 +130,7 @@ function Form({ onSubmit, dataemp }) {
 						<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 							<label
 								className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-								for="grid-first-name"
+								htmlFor="grid-first-name"
 							>
 								Department
 							</label>
@@ -148,14 +152,14 @@ function Form({ onSubmit, dataemp }) {
 									</select>
 								)}
 							/>
-							{/* <p className="text-red-500 text-xs italic">
-								{errors.department?.message}
-							</p> */}
+							<p className="text-red-500 text-xs italic">
+								{errors.department_id?.message}
+							</p>
 						</div>
 						<div className="w-full md:w-1/2 px-3">
 							<label
 								className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-								for="grid-first-name"
+								htmlFor="grid-first-name"
 							>
 								Age
 							</label>
@@ -178,12 +182,12 @@ function Form({ onSubmit, dataemp }) {
 					<div className="mt-5 flex justify-center ">
 						<button
 							type="submit"
-							className="bg-blue-500 hover:bg-blue-700 text-white font-semibold hover:text-white py-1 px-3 border  hover:border-transparent rounded"
+							className="bg-blue-500 hover:bg-blue-700 text-white font-bold hover:text-white py-1 px-3 border  hover:border-transparent rounded"
 						>
-							SUBMIT
+							Submit
 						</button>
 						<button
-							className="bg-red-500 hover:bg-red-700 text-white font-semibold hover:text-white py-1 ml-5 px-3 border  hover:border-transparent rounded"
+							className="bg-red-500 hover:bg-red-700 text-white font-bold hover:text-white py-1 ml-5 px-3 border  hover:border-transparent rounded"
 							onClick={() => nav("/")}
 						>
 							Cancel
