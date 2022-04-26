@@ -1,6 +1,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
 const schema = yup
@@ -16,17 +18,13 @@ const schema = yup
 			.max(60, "Age must be less than or equal to 60")
 			.required(),
 		email: yup.string().email().required(),
-		department: yup
-			.string()
-			.matches(/^[A-Za-z ]*$/, "Please enter valid name")
-			.required(),
 		phonenumber: yup
 			.number()
 			.max(9999999999, "Please enter valid phonenumber")
 			.required(),
 	})
 	.required();
-function Form({ onSubmit, data }) {
+function Form({ onSubmit, dataemp }) {
 	const { id } = useParams();
 	const nav = useNavigate();
 	const {
@@ -37,15 +35,25 @@ function Form({ onSubmit, data }) {
 	} = useForm({
 		resolver: yupResolver(schema),
 	});
+
+	const getDept = () => {
+		const getApi = "http://localhost:8080/department";
+		return axios.get(getApi);
+	};
+	const { data, isLoading, error } = useQuery("dept", getDept);
+
 	useEffect(() => {
-		if (data) {
-			setValue("username", data?.username);
-			setValue("email", data?.email);
-			setValue("department", data?.department);
-			setValue("phonenumber", data?.phonenumber);
-			setValue("age", data?.age);
+		if (dataemp) {
+			setValue("username", dataemp?.username);
+			setValue("email", dataemp?.email);
+			setValue("department_id", dataemp?.department_id);
+			setValue("phonenumber", dataemp?.phonenumber);
+			setValue("age", dataemp?.age);
 		}
-	}, [data]);
+	}, [dataemp, setValue]);
+	if (isLoading) return <h1>Loading...</h1>;
+	if (error) return <h1>Error...</h1>;
+	console.log(data?.data);
 
 	return (
 		<>
@@ -114,30 +122,37 @@ function Form({ onSubmit, data }) {
 					<p className="text-red-500 text-xs italic">
 						{errors.phonenumber?.message}
 					</p>
-					<div class="flex flex-wrap -mx-3 mb-6">
-						<div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+					<div className="flex flex-wrap -mx-3 mb-6">
+						<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 							<label
 								className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
 								for="grid-first-name"
 							>
 								Department
 							</label>
+
 							<Controller
-								render={({ field }) => (
-									<input
-										className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-										{...field}
-									/>
-								)}
-								name="department"
+								name="department_id"
 								control={control}
-								defaultValue=""
-							/>{" "}
-							<p className="text-red-500 text-xs italic">
+								render={({ field }) => (
+									<select
+										className="form-select form-select-lg appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+										aria-label=".form-select-lg example"
+										{...field}
+									>
+										{data?.data?.map((val) => (
+											<option key={val.id} value={val.id}>
+												{val.department}
+											</option>
+										))}
+									</select>
+								)}
+							/>
+							{/* <p className="text-red-500 text-xs italic">
 								{errors.department?.message}
-							</p>
+							</p> */}
 						</div>
-						<div class="w-full md:w-1/2 px-3">
+						<div className="w-full md:w-1/2 px-3">
 							<label
 								className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
 								for="grid-first-name"

@@ -11,6 +11,7 @@ function Create() {
 		const postApi = "http://localhost:8080/create_employee";
 		return axios.post(postApi, users);
 	};
+
 	const postUser = useMutation(creteUser, {
 		onSuccess: () => {
 			queryClient.invalidateQueries("allemployees");

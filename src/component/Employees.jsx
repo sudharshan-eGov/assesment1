@@ -115,10 +115,7 @@ export default function Employees({ search }) {
 													val.phonenumber
 														.toLowerCase()
 														.includes(search.toLowerCase()) ||
-													val.age.toString().includes(search.toString()) ||
-													val.department
-														.toLowerCase()
-														.includes(search.toLowerCase())
+													val.age.toString().includes(search.toString())
 												) {
 													return val;
 												}
@@ -137,7 +134,15 @@ export default function Employees({ search }) {
 														{val.email}
 													</td>
 													<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
-														{val.department}
+														{val.department_id == 1
+															? "IT"
+															: val.department_id == 2
+															? "Marketing"
+															: val.department_id == 3
+															? "Sales"
+															: val.department_id == 4
+															? "HR"
+															: null}
 													</td>
 													<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r-2">
 														{val.phonenumber}

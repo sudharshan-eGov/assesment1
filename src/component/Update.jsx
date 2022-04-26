@@ -13,6 +13,7 @@ function Update() {
 	const { data, error, isLoading } = useQuery("employee", () =>
 		getEmployee(id)
 	);
+
 	const updateUser = (employee) => {
 		const postApi = `http://localhost:8080/update_employee/${id}`;
 		return axios.put(postApi, employee);
@@ -26,6 +27,7 @@ function Update() {
 		},
 	});
 
+
 	const onSubmit = async (data) => {
 		await updateEmployee.mutate({ id, ...data });
 		nav("/");
@@ -34,7 +36,7 @@ function Update() {
 	if (error) <h1>Error!</h1>;
 	return (
 		<Suspense fallback={<h1>isLoading...</h1>}>
-			<UpdateForm onSubmit={onSubmit} data={{ ...data?.data }} />
+			<UpdateForm onSubmit={onSubmit} dataemp={{ ...data?.data }} />
 		</Suspense>
 	);
 }
