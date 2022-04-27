@@ -23,26 +23,18 @@ export default function NavBar() {
 									className="h-10 w-45 absolute left-0 top-3 ml-10"
 									alt=""
 								/>
-
-								<button
-									className="bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded m-1"
-									onClick={() => handleClick("en")}
+								<select
+									className="form-select form-select-lg appearance-none block max-w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-1 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+									aria-label=".form-select-lg example"
+									name="Select your Language"
+									id=""
+									onChange={(e) => handleClick(e.target.value)}
 								>
-									English
-								</button>
-								<button
-									className=" bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded m-1"
-									onClick={() => handleClick("hi")}
-								>
-									{t("Hindi")}
-								</button>
-
-								<button
-									className=" bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded m-1"
-									onClick={() => handleClick("te")}
-								>
-									{t("Telugu")}
-								</button>
+									<option value="#">Choose Language</option>
+									<option value="en">English</option>
+									<option value="hi">Hindi</option>
+									<option value="te">Telugu</option>
+								</select>
 							</div>
 						</div>
 					</div>
