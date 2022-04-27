@@ -4,6 +4,7 @@ import Create from "./component/Create";
 import Header from "./component/Header";
 import NavBar from "./component/NavBar";
 import Update from "./component/Update";
+import "./i18next";
 function App() {
 	return (
 		<div>

@@ -1,0 +1,22 @@
+{
+	"Employees": {
+		"1": "कर्मचारियों"
+	},
+	"Sl_No.": "क्रमिक संख्या",
+	"Name": "नाम",
+	"Email": "ईमेल",
+	"Department": "विभाग",
+	"Mobile": "मोबाइल",
+	"Phone Number": "मोबाइल",
+	"Age": "आयु",
+	"Actions": "कार्रवाई",
+	"Submit": "सृजन करना",
+	"Cancel": "रद्द करें",
+	"Update": "अपडेट करें",
+	"Search(Name, Phone, Age...)": "तलाशी",
+	"Create Employee": "कर्मचारी बनाएँ",
+	"Update Employee": "अद्यतन कर्मचारी",
+	"ASC": "आरोही",
+	"DESC": "उतरते",
+	"Hindi": "हिन्दी"
+}

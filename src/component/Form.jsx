@@ -2,10 +2,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
-
 const schema = yup
 	.object({
 		username: yup
@@ -45,7 +45,6 @@ function Form({ onSubmit, dataemp }) {
 	const { data, isLoading, error } = useQuery("dept", getDept, {
 		enabled: true,
 	});
-
 	useEffect(() => {
 		if (dataemp) {
 			setValue("username", dataemp?.username);
@@ -55,14 +54,17 @@ function Form({ onSubmit, dataemp }) {
 			setValue("age", dataemp?.age);
 		}
 	}, [dataemp, setValue]);
+
+	const { t } = useTranslation();
 	if (isLoading) return <h1>Loading...</h1>;
 	if (error) return <h1>Error...</h1>;
 	console.log(data?.data);
-
+	const create = t("Create Employee");
+	const update = t("Update Employee");
 	return (
 		<>
 			<h1 className="flex justify-center items-center  text-2xl font-extrabold text-blue-900 absolute left-10 mt-10 underline">
-				{id ? "Update Employee" : "Create Employee"}
+				{id ? update : create}
 			</h1>{" "}
 			<div className="w-full max-w-6xl mt-12 py-10 flex justify-center items-center mt-15">
 				<form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg 	">
@@ -70,7 +72,7 @@ function Form({ onSubmit, dataemp }) {
 						className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
 						htmlFor="grid-first-name"
 					>
-						Name
+						{t("Name")}
 					</label>
 					<Controller
 						render={({ field }) => (
@@ -91,7 +93,7 @@ function Form({ onSubmit, dataemp }) {
 						className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
 						htmlFor="grid-first-name"
 					>
-						Email
+						{t("Email")}
 					</label>
 					<Controller
 						render={({ field }) => (
@@ -110,7 +112,7 @@ function Form({ onSubmit, dataemp }) {
 						className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
 						htmlFor="grid-first-name"
 					>
-						Phone Number
+						{t("Phone Number")}
 					</label>
 					<Controller
 						render={({ field }) => (
@@ -132,7 +134,7 @@ function Form({ onSubmit, dataemp }) {
 								className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
 								htmlFor="grid-first-name"
 							>
-								Department
+								{t("Department")}
 							</label>
 
 							<Controller
@@ -161,7 +163,7 @@ function Form({ onSubmit, dataemp }) {
 								className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
 								htmlFor="grid-first-name"
 							>
-								Age
+								{t("Age")}
 							</label>
 							<Controller
 								render={({ field }) => (
@@ -184,13 +186,13 @@ function Form({ onSubmit, dataemp }) {
 							type="submit"
 							className="bg-blue-500 hover:bg-blue-700 text-white font-bold hover:text-white py-1 px-3 border  hover:border-transparent rounded"
 						>
-							Submit
+							{t("Submit")}
 						</button>
 						<button
 							className="bg-red-500 hover:bg-red-700 text-white font-bold hover:text-white py-1 ml-5 px-3 border  hover:border-transparent rounded"
 							onClick={() => nav("/")}
 						>
-							Cancel
+							{t("Cancel")}
 						</button>
 					</div>
 				</form>

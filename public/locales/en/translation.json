@@ -1,0 +1,22 @@
+{
+	"Employees": {
+		"1": "Employees"
+	},
+	"Sl_No.": "Sl_No",
+	"Name": "Name",
+	"Email": "Email",
+	"Department": "Department",
+	"Mobile": "Mobile",
+	"Phone Number": "Phone Number",
+	"Age": "Age",
+	"Actions": "Actions",
+	"Submit": "Submit",
+	"Cancel": "Cancel",
+	"Update": "Update",
+	"Search(Name, Phone, Age...)": "Search(Name, Phone, Age...)",
+	"Create Employee": "Create Employee",
+	"Update Employee": "Update Employee",
+	"ASC": "ASC",
+	"DESC": "DESC",
+	"English": "English"
+}

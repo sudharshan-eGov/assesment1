@@ -1,0 +1,22 @@
+{
+	"Employees": {
+		"1": "ఉద్యోగులు"
+	},
+	"Sl_No.": "క్రమ సంఖ్య",
+	"Name": "పేరు",
+	"Email": "ఇమెయిల్",
+	"Department": "శాఖ",
+	"Mobile": "మొబైల్",
+	"Phone Number": "ఫోను నంబరు",
+	"Age": "వయస్సు",
+	"Actions": "చర్యలు",
+	"Submit": "సమర్పించండి",
+	"Cancel": "రద్దు చేయండి",
+	"Update": "నవీకరణ",
+	"Search(Name, Phone, Age...)": "వెతకండి",
+	"Create Employee": "ఉద్యోగిని సృష్టించండి",
+	"Update Employee": "ఉద్యోగిని నవీకరించండి",
+	"ASC": "ఆరోహణ",
+	"DESC": "అవరోహణ",
+	"Telugu": "తెలుగు"
+}

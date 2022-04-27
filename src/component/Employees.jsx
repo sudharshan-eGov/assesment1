@@ -1,6 +1,7 @@
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
 import axios from "axios";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 export default function Employees({ search }) {
@@ -31,8 +32,10 @@ export default function Employees({ search }) {
 	const desc = (a, b) => {
 		return b.username.localeCompare(a.username);
 	};
+	const { t } = useTranslation();
 	if (isLoading) return <h1>Loading...</h1>;
 	if (error) return <h1>Error...</h1>;
+
 	return (
 		<div>
 			{isFetching ? (
@@ -49,25 +52,25 @@ export default function Employees({ search }) {
 												scope="col"
 												className="text-sm font-extrabold text-gray-900 px-6 py-4 text-left border-r-2"
 											>
-												Sl No.
+												{t("Sl_No.")}
 											</th>
 											<th
 												scope="col"
 												className="text-sm font-extrabold text-gray-900 px-6 py-4 text-left  border-r-2"
 											>
 												<div className="ml-2 flex-row justify-around">
-													<div>Name</div>
+													<div>{t("Name")}</div>
 													<button
 														onClick={() => setSort(true)}
 														className=" bg-blue-400 hover:bg-blue-700 text-white  px-1 rounded-md text-bold font-sm "
 													>
-														ASC &#8593;
+														{t("ASC")} &#8593;
 													</button>
 													<button
 														onClick={() => setSort(false)}
 														className=" bg-blue-400 hover:bg-blue-700 text-white  px-1 rounded-md text-bold font-sm ml-2 md:768"
 													>
-														DESC &#8595;
+														{t("DESC")} &#8595;
 													</button>
 												</div>
 											</th>
@@ -75,31 +78,31 @@ export default function Employees({ search }) {
 												scope="col"
 												className="text-sm font-extrabold text-gray-900 px-6 py-4 text-left border-r-2"
 											>
-												Email
+												{t("Email")}
 											</th>
 											<th
 												scope="col"
 												className="text-sm font-extrabold text-gray-900 px-6 py-4 text-left border-r-2"
 											>
-												Department
+												{t("Department")}
 											</th>
 											<th
 												scope="col"
 												className="text-sm font-extrabold text-gray-900 px-6 py-4 text-left border-r-2"
 											>
-												Mobile
+												{t("Mobile")}
 											</th>
 											<th
 												scope="col"
 												className="text-sm font-extrabold text-gray-900 px-6 py-4 text-left border-r-2"
 											>
-												Age
+												{t("Age")}
 											</th>
 											<th
 												scope="col"
 												className="text-sm font-extrabold text-gray-900 px-6 py-4 text-left border-r-2"
 											>
-												Actions
+												{t("Actions")}
 											</th>
 										</tr>
 									</thead>
