@@ -24,16 +24,16 @@ export default function NavBar() {
 									alt=""
 								/>
 								<select
-									className="form-select form-select-lg appearance-none block max-w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-1 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-									aria-label=".form-select-lg example"
+									className="form-select form-select-lg appearance-none block max-w-full bg-gray-200 text-gray-700 border border-gray-400 rounded py-1 px-4 mb-2 leading-tight focus:outline-none focus:bg-white"
+									// aria-label=".form-select-lg example"
 									name="Select your Language"
 									id=""
 									onChange={(e) => handleClick(e.target.value)}
 								>
 									<option value="#">Choose Language</option>
-									<option value="en">English</option>
-									<option value="hi">Hindi</option>
-									<option value="te">Telugu</option>
+									<option value="en">{t("English")}</option>
+									<option value="hi">{t("Hindi")}</option>
+									<option value="te">{t("Telugu")}</option>
 								</select>
 							</div>
 						</div>
