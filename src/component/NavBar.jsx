@@ -2,9 +2,9 @@ import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import logo from "../assests/logo.png";
 
-function classNames(...classes) {
-	return classes.filter(Boolean).join(" ");
-}
+// function classNames(...classes) {
+// 	return classes.filter(Boolean).join(" ");
+// }
 export default function NavBar() {
 	function handleClick(lang) {
 		i18next.changeLanguage(lang);
