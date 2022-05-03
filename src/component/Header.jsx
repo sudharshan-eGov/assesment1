@@ -1,5 +1,7 @@
+import { UserAddIcon } from "@heroicons/react/solid";
 import { useState, useTransition } from "react";
 import { useTranslation } from "react-i18next";
+
 import Employees from "./Employees";
 function Header() {
 	const [input, setInput] = useState("");
@@ -22,10 +24,14 @@ function Header() {
 					onChange={searchHandler}
 				/>
 				<a
+					ripple="light"
 					href="/create"
 					className=" absolute right-0  bg-blue-400 hover:bg-blue-700 text-white px-3 py-2 mr-10 rounded-md text-sm font-medium"
 				>
-					{t("Create Employee")}
+					<p className="inline-flex">
+						<UserAddIcon className="h-5 w-5 text-white-500" />
+						&nbsp; {t("Create Employee")}
+					</p>
 				</a>
 			</div>
 

@@ -1,4 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import Button from "@material-tailwind/react/Button";
 import axios from "axios";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -182,18 +183,20 @@ function Form({ onSubmit, dataemp }) {
 						</div>{" "}
 					</div>
 					<div className="mt-5 flex justify-center ">
-						<button
+						<Button
+							ripple="light"
 							type="submit"
 							className="bg-blue-500 hover:bg-blue-700 text-white font-bold hover:text-white py-1 px-3 border  hover:border-transparent rounded"
 						>
 							{t("Submit")}
-						</button>
-						<button
+						</Button>
+						<Button
+							ripple="light"
 							className="bg-red-500 hover:bg-red-700 text-white font-bold hover:text-white py-1 ml-5 px-3 border  hover:border-transparent rounded"
 							onClick={() => nav("/")}
 						>
 							{t("Cancel")}
-						</button>
+						</Button>
 					</div>
 				</form>
 			</div>

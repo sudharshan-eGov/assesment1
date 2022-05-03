@@ -5,6 +5,8 @@ import Header from "./component/Header";
 import NavBar from "./component/NavBar";
 import Update from "./component/Update";
 import "./i18next";
+import "@material-tailwind/react/tailwind.css";
+
 function App() {
 	return (
 		<div>

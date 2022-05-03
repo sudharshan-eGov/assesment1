@@ -1,4 +1,5 @@
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
+import Button from "@material-tailwind/react/Button";
 import axios from "axios";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -58,20 +59,23 @@ export default function Employees({ search }) {
 												scope="col"
 												className="text-sm font-extrabold text-gray-900 px-6 py-4 text-left  border-r-2"
 											>
-												<div className="ml-2 flex-row justify-around">
+												<div className="ml-2  justify-around inline-flex">
 													<div>{t("Name")}</div>
-													<button
+													&nbsp;{" "}
+													<Button
+														ripple="light"
 														onClick={() => setSort(true)}
 														className=" bg-blue-400 hover:bg-blue-700 text-white  px-1 rounded-md text-bold font-sm "
 													>
 														{t("ASC")} &#8593;
-													</button>
-													<button
+													</Button>
+													<Button
+														ripple="light"
 														onClick={() => setSort(false)}
 														className=" bg-blue-400 hover:bg-blue-700 text-white  px-1 rounded-md text-bold font-sm ml-2 md:768"
 													>
 														{t("DESC")} &#8595;
-													</button>
+													</Button>
 												</div>
 											</th>
 											<th
@@ -148,19 +152,21 @@ export default function Employees({ search }) {
 
 													<td className="text-lg text-gray-900 font-light px-4  whitespace-nowrap border-r-2">
 														<div className="flex">
-															<button
+															<Button
+																ripple="light"
 																className="text-sm font-bold rounded p-2 border text-white bg-gray-400 hover:bg-gray-700 cursor-pointer "
 																onClick={() => nav(`/update/${val.id}`)}
 															>
 																{" "}
 																<PencilAltIcon className="h-5 w-5 " />
-															</button>
-															<button
+															</Button>
+															<Button
+																ripple="light"
 																className="ml-4 text-white text-sm font-bold rounded p-2 border  bg-red-500 hover:bg-red-700 cursor-pointer "
 																onClick={() => DeleteEmployee.mutate(val.id)}
 															>
 																<TrashIcon className="h-5 w-5 " />
-															</button>
+															</Button>
 														</div>
 													</td>
 												</tr>
